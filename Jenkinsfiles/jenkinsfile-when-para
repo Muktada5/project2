@@ -1,0 +1,34 @@
+pipeline {
+    agent none
+    parameters {
+        choice(
+            choices: ['YES','NO'],
+            description: 'Choose if the CDT file need to be Deployed',
+            name: 'CDPFILE'
+        )
+    }
+    stages {
+        stage("To upload a file") {
+            when {
+                expression {params.CDPFILE == "YES"}
+            }
+            input {
+                message "Provide file name"
+            }
+            agent any
+            steps {
+                checkout scm
+                sh "aws s3 sync /var/home_jenkins/workspace/${JOB_NAME}/ s3://cdt-test-build/"
+                echo "The file has been uploded"
+            }
+        }    
+        stage("Do not upload a file") {
+            when {
+                expression {params.CDPFILE == "NO"}
+            }
+            steps {
+                echo "Do not upload the file"
+            }
+        }
+    }
+}
