@@ -15,7 +15,7 @@ pipeline {
             agent any
             steps {
                 checkout scm
-                sh "aws s3 cp /var/lib/jenkins/workspace/${JOB_NAME}/nature.jpg s3://jenkins-devops/"
+                sh "aws s3 cp /var/lib/jenkins/workspace/${JOB_NAME}/nature.jpg s3://jenkins-devops/nature-$(date +"%m%d%H%M")
                 echo "The file has been uploded"
             }
         }    
