@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo serice httpd stop
+sudo service httpd stop
