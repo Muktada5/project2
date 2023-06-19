@@ -10,9 +10,9 @@ pipeline {
       steps {
         dir('/var/lib/jenkins/workspace/s3/Terraform/s3-new/') {
           withEnv(["Bucket_Name=${params.Bucket_Name}"]) {
-            sh 'terraform init'
+            sh 'sudo terraform init'
             sleep 20
-            sh 'terraform apply -var "Bucket_Name=${Bucket_Name}" -auto-approve'
+            sh 'sudo terraform apply -var "Bucket_Name=${Bucket_Name}" -auto-approve'
           }
         }
       }
