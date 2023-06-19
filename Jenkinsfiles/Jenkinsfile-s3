@@ -1,0 +1,12 @@
+pipeline {
+  agent { label "terraform" }
+  stages {
+    stage('Terraform Apply') {
+      steps {
+        withEnv(["BUCKET_NAME=${params.Bucket_Name}"]) {
+          sh 'terraform apply -var "bucket_name=${BUCKET_NAME}"'
+        }
+      }
+    }
+  }
+}
