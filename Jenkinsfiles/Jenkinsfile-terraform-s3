@@ -17,5 +17,10 @@ pipeline {
         }
       }
     }
+    stage ('Output') {
+      steps {
+        echo "${Bucket_Name} has sucesfully created"
+      }
+    }
   }
 }
