@@ -8,6 +8,7 @@ pipeline {
     }
     stage('Terraform Apply') {
       steps {
+        sh 'cd /var/lib/jenkins/workspace/s3/Terraform/s3-new/'
         withEnv(["BUCKET_NAME=${params.Bucket_Name}"]) {
           sh 'terraform apply -var "bucket_name=${BUCKET_NAME}"'
         }
