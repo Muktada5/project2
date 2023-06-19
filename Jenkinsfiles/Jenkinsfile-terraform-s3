@@ -13,6 +13,7 @@ pipeline {
             sh 'terraform init'
             sleep 20
             sh 'terraform apply -var "Bucket_Name=${Bucket_Name}" -auto-approve'
+          }
         }
       }
     }
