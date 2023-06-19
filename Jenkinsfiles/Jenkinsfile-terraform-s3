@@ -1,6 +1,11 @@
 pipeline {
   agent { label "terraform" }
   stages {
+    stage ('Codechekout') {
+      steps {
+        checkout scm
+      }
+    }
     stage('Terraform Apply') {
       steps {
         withEnv(["BUCKET_NAME=${params.Bucket_Name}"]) {
