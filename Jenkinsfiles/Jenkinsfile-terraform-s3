@@ -1,14 +1,14 @@
 pipeline {
-  agent { label "terraform-agent" }
+  agent any
   stages {
     stage ('Codechekout') {
       steps {
         checkout scm
       }
     }
-    stage('Terraform Apply') {
+    stage('Terraform') {
       steps {
-        dir('/var/lib/jenkins/workspace/s3-terraform/Terraform/s3-new/') {
+        dir('/var/lib/jenkins/workspace/s3/Terraform/s3-new/') {
           withEnv(["Bucket_Name=${params.Bucket_Name}"]) {
             sh 'sudo terraform init'
             sleep 20
