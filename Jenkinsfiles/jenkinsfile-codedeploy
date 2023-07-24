@@ -7,7 +7,7 @@ pipeline{
                 checkout scm
             }
         }
-        stage {
+        stage ("CodeDeploy") {
             steps {
                 echo "Deploying on Dev Environment"
                 step([$class: 'AWSCodeDeployPublisher',
