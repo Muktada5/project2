@@ -1,5 +1,5 @@
 #!/bin/bash
-# MNP-Tech prod Deployment
+# Deployment
 if [ "$DEPLOYMENT GROUP_NAME" == "mnp-dg" ]
 then
 sudo cp /var/lib/jenkins/workspace/${JOB_NAME}/index.html /var/www/html/
