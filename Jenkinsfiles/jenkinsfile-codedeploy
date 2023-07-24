@@ -3,17 +3,16 @@ pipeline{
     stages{
         stage ("Checking out the code and running Deployment") {
             agent any
-            steps{
+            steps {
                 checkout scm
-                script{
-                   dir("/var/lib/jenkins/workspace/${JOB_NAME}/")
-                   
-                   /opt/sonar-scanner/bin/sonar-scanner -X -Dproject.settings=sonar.properties/sonar-project-rqi.
-                }
+            }
+        }
+        stage {
+            steps {
                 echo "Deploying on Dev Environment"
                 step([$class: 'AWSCodeDeployPublisher',
-                       applicationName:'bala-ap',
-                       awsAccessKey: '', awsSecretKey: '', deploymentConfig: 'CodeDeployDefault.OneAtATime', deploymentGroupAppspec: false, deploymentGroupName: 'bala-dg', excludes: '', iamRoleArn: '', includes: '**', proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'zero-downtime-app', s3prefix: 'artifact', subdirectory: '', versionFileName: '', waitForCompletion: false]
+                       applicationName:'mnp-tech',
+                       awsAccessKey: '', awsSecretKey: '', deploymentConfig: 'CodeDeployDefault.OneAtATime', deploymentGroupAppspec: false, deploymentGroupName: 'mnp-dg', excludes: '', iamRoleArn: '', includes: '**', proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'mnp-test-2152', s3prefix: 'test1', subdirectory: '', versionFileName: '', waitForCompletion: false]
                     )
             }
         }
