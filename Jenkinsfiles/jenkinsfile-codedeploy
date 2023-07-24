@@ -1,20 +1,18 @@
-pipeline{
-    agent none
-    stages{
-        stage ("Checking out the code and running Deployment") {
-            agent any
-            steps {
+pipeline {
+    agent {label 'mnp-app-slave'}
+    stages {    
+        stage('Running on MNP-Dev Environment') {
+            steps{
                 checkout scm
-            }
-        }
-        stage ("CodeDeploy") {
-            steps {
-                echo "Deploying on Dev Environment"
+                echo "Removing files and folders"
+                sh 'ls -al'
+                sh 'rm -rf .git'
+                echo "Deploying on MNP-DEV Environment by Code deploy"    
                 step([$class: 'AWSCodeDeployPublisher',
                        applicationName:'mnp-tech',
-                       awsAccessKey: '', awsSecretKey: '', deploymentConfig: 'CodeDeployDefault.OneAtATime', deploymentGroupAppspec: false, deploymentGroupName: 'mnp-dg', excludes: '', iamRoleArn: '', includes: '**', proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'mnp-test-2152', s3prefix: 'test1', subdirectory: '', versionFileName: '', waitForCompletion: false]
-                    )
-            }
-        }
+                       awsAccessKey: '', awsSecretKey: '', deploymentConfig: 'CodeDeployDefault.OneAtATime', deploymentGroupAppspec: false, deploymentGroupName: 'mnp-dg', excludes: '', iamRoleArn: '', includes: '**', proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'codedeploy-mnp', s3prefix: 'mnp-dev', subdirectory: '', versionFileName: '', waitForCompletion: false]
+                    )    
+            }    
+        }                
     }
 }
