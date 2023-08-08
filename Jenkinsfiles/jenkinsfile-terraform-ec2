@@ -12,7 +12,7 @@ pipeline {
           withEnv(["Instance_Type=${params.Instance_Type}"]) {
             sh "terraform init"
             sleep 20
-            sh 'sudo terraform apply -var "Instance_Type=${Instance_Type}" -auto-approve'
+            sh "terraform apply -var "Instance_Type=${Instance_Type}" -auto-approve"
           }
         }
       }
