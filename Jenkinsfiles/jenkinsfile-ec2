@@ -1,0 +1,29 @@
+pipeline {
+  agent any
+  environment {
+    TF_VAR_instance_type = "${params.Instance_Type}"
+  }
+  stages {
+    stage('CodeCheckout') {
+      steps {
+        checkout scm
+      }
+    }
+    stage('Terraform') {
+      steps {
+        dir('/var/lib/jenkins/workspace/terraform-ec2/Terraform/ec2/') {
+          sh "terraform init"
+          sleep 20
+          sh "terraform apply -var 'Instance_Type=${TF_VAR_instance_type}' -auto-approve"
+        }
+      }
+    }
+    stage('Output') {
+      steps {
+        script {
+          echo "${TF_VAR_instance_type} has been successfully created"
+        }
+      }
+    }
+  }
+}
