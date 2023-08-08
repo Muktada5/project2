@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Terraform') {
       steps {
-        dir('/var/lib/jenkins/workspace/${JOB_NAME}/Terraform/ec2/') {
+        dir('/var/lib/jenkins/workspace/terraform-ec2/Terraform/ec2/') {
           withEnv(["Instance_Type=${params.Instance_Type}"]) {
             sh 'sudo terraform init'
             sleep 20
