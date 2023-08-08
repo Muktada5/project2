@@ -1,0 +1,26 @@
+pipeline {
+  agent any
+  stages {
+    stage ('Codechekout') {
+      steps {
+        checkout scm
+      }
+    }
+    stage('Terraform') {
+      steps {
+        dir('/var/lib/jenkins/workspace/s3/Terraform/s3-new/') {
+          withEnv(["Instance_Type=${params.Instance_Type}"]) {
+            sh 'sudo terraform init'
+            sleep 20
+            sh 'sudo terraform apply -var "Instance_Type=${Instance_Type}" -auto-approve'
+          }
+        }
+      }
+    }
+    stage ('Output') {
+      steps {
+        echo "${Instance_Type} has sucesfully created"
+      }
+    }
+  }
+}
