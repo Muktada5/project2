@@ -11,7 +11,7 @@ pipeline {
     }
     stage('Terraform') {
       steps {
-        dir('/var/lib/jenkins/workspace/terraform-ec2/Terraform/ec2/') {
+        dir('/var/lib/jenkins/workspace/ec2/Terraform/ec2/') {
           sh "terraform init"
           sleep 20
           sh "terraform apply -var 'Instance_Type=${TF_VAR_instance_type}' -auto-approve"
