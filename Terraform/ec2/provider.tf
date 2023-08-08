@@ -4,7 +4,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket    = "my-s3-mnp-bucket"
-    key       = "MNP-Tech/modules/ec2-bck/terraform.tfstate"
+    key       = "MNP-Tech/modules/ec2/terraform.tfstate"
     region    = "us-east-1"
     encrypt   = true
   }
