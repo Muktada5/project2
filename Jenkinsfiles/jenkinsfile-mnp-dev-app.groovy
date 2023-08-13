@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {label "mnp-dev-slave"}
     stages {
         stage ("GIT Clone") {
             steps {
