@@ -13,4 +13,12 @@ pipeline {
             }
         }
     }
+    post {
+        success {
+            echo "The Dev environment BUild is Sucess"
+        }
+        failure {
+            echo "The Dev environment BUild is Failed"
+        }
+    }
 }
