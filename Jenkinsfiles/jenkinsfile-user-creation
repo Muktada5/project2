@@ -6,13 +6,13 @@ pipeline {
                 sh "cat /etc/os-release"
             }
         }
-        stage ("approve") { 
-            steps {
-                timeout(time: 5, unit: "MINUTES") {
-                    input message: 'Please approve to create user' , ok : 'yes'
-                }
-            }
-        }
+       // stage ("approve") { 
+        //    steps {
+        //        timeout(time: 5, unit: "MINUTES") {
+        //            input message: 'Please approve to create user' , ok : 'yes'
+        //        }
+        //    }
+        // }
         stage ("Adding user") {
             steps {
                 sh "sudo useradd tejus-02"
