@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    stages {
+        stage ("Version") {
+            steps {
+                sh "cat /etc/os-release"
+            }
+        }
+        stage ("approve") { 
+            steps {
+                timeout(time: 5, unit: "MINUTES") {
+                    input message: 'Please approve to create user' , ok : 'yes'
+                }
+            }
+        }
+        stage ("Adding user") {
+            steps {
+                sh "sudo useradd tejus"
+            }
+        }
+        stage ("Users") {
+            steps {
+                sh "cat /etc/passwd"
+            }
+        }
+    }
+    post {
+        success {
+            echo "The Build is sucess"
+        }
+        failure {
+            echo "The Build is failed"
+        }
+    }
+}
