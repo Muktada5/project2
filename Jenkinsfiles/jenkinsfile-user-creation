@@ -15,7 +15,7 @@ pipeline {
         }
         stage ("Adding user") {
             steps {
-                sh "sudo useradd tejus"
+                sh "sudo useradd tejus-02"
             }
         }
         stage ("Users") {
