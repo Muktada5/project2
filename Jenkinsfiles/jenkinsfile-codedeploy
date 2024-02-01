@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'mnp-dev-app-agent'}
+    agent {label 'flipkart-slave'}
     stages {    
         stage('Running on MNP-Dev Environment') {
             steps{
