@@ -1,7 +1,7 @@
 #!/bin/bash
 # Deployment
-if [ "$DEPLOYMENT_GROUP_NAME" == "mnptech-deploy" ]
+if [ "$DEPLOYMENT_GROUP_NAME" == "mnptecg-deploy" ]
 then
-sudo cp /var/www/html/alliance-dir/index.html /var/www/html/
+sudo cp -r /var/www/html/code-dir/* /var/www/html/
 sudo service httpd restart
 fi
