@@ -9,7 +9,7 @@ pipeline {
                 sh 'rm -rf .git'
                 echo "Deploying on MNP-DEV Environment by Code deploy"    
                 step([$class: 'AWSCodeDeployPublisher',
-                       applicationName:'mnptech-cd-ap',
+                       applicationName:'mnptech-codedeploy-app',
                        awsAccessKey: '', awsSecretKey: '', deploymentConfig: 'CodeDeployDefault.OneAtATime', deploymentGroupAppspec: false, deploymentGroupName: 'mnptech-deploy', excludes: '', iamRoleArn: '', includes: '**', proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'mnptech-artifact', s3prefix: 'dev', subdirectory: '', versionFileName: '', waitForCompletion: false]
                     )    
             }    
