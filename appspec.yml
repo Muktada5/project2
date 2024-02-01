@@ -3,7 +3,7 @@ os: linux
 
 files:
   - source: ./
-    destination: /var/www/html/alliance-dir
+    destination: /var/www/html/code-dir
     overwrite: yes
 
 hooks:
