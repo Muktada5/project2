@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'flipkart-slave'}
+    agent {label 'slave01'}
     stages {    
         stage('Running on MNP-Dev Environment') {
             steps{
@@ -10,7 +10,7 @@ pipeline {
                 echo "Deploying on MNP-DEV Environment by Code deploy"    
                 step([$class: 'AWSCodeDeployPublisher',
                        applicationName:'mnptech-codedeploy-app',
-                       awsAccessKey: '', awsSecretKey: '', deploymentConfig: 'CodeDeployDefault.OneAtATime', deploymentGroupAppspec: false, deploymentGroupName: 'mnptech-deploy', excludes: '', iamRoleArn: '', includes: '**', proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'mnptech-artifact-01', s3prefix: 'dev', subdirectory: '', versionFileName: '', waitForCompletion: false]
+                       awsAccessKey: '', awsSecretKey: '', deploymentConfig: 'CodeDeployDefault.OneAtATime', deploymentGroupAppspec: false, deploymentGroupName: 'mnptech-dev-deployment', excludes: '', iamRoleArn: '', includes: '**', proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'mnptech-artifact-02', s3prefix: 'dev', subdirectory: '', versionFileName: '', waitForCompletion: false]
                     )    
             }    
         }                
